@@ -1,39 +1,39 @@
-# Users-list by Avatar4eg
+# Users list by ![flagrow logo](https://avatars0.githubusercontent.com/u/16413865?v=3&s=15) [flagrow](https://discuss.flarum.org/d/1832-flagrow-extension-developer-group)
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/flagrow/users-list/license.md) [![Latest Stable Version](https://img.shields.io/packagist/v/flagrow/users-list.svg)](https://github.com/flagrow/users-list) [![Total Downloads](https://img.shields.io/packagist/dt/flagrow/users-list.svg)](https://github.com/flagrow/users-list)
 
 A [Flarum](http://flarum.org) extension that adds users list to admin panel.
 
-### Screenshots
-
-Users list page:  
 ![Imgur](https://i.imgur.com/JSlVsEn.png)  
-Mail modal:  
 ![Imgur](https://i.imgur.com/PIHr4mT.png)  
 
-### Goals
-
-- Allow admin to view list of users registered users.
-- Allow admin to send emails to user or all users.
-
-### Installation
+### installation
 
 ```bash
-composer require avatar4eg/flarum-ext-users-list
+composer require flagrow/users-list
 ```
 
-### Configuration
+### updating
 
-No configuration needed.
+```bash
+composer update flagrow/users-list
+php flarum cache:clear
+```
 
-### Issues
+### configuration
 
-- For now (while flarum/core[#987](https://github.com/flarum/core/issues/978)) sending mail for all users may have errors due php max_execution_time limit.
+Enable the extension.
 
-## End-user usage
+Visit the users tab on the admin area to view your users and send them emails.
 
-On admin panel click Users button to view users. For each user there are buttons (mail and view user) and short info (last seen and post/discussion counter).
+### links
 
-### Links
+- [changelog](https://github.com/flagrow/users-list/blob/master/changelog.md)
+- [on github](https://github.com/flagrow/users-list)
+- [on packagist](http://packagist.com/packages/flagrow/users-list)
+- [issues](https://github.com/flagrow/users-list/issues)
 
-- [on github](https://github.com/avatar4eg/flarum-ext-users-list)
-- [on packagist](https://packagist.com/packages/avatar4eg/flarum-ext-users-list)
-- [issues](https://github.com/avatar4eg/flarum-ext-users-list/issues)
+
+> The initial version was created by [Avatar4eg](https://github.com/avatar4eg), all credits of that version go to him.
+
+An extension by [Flagrow](https://flagrow.io), a project of [Gravure](https://gravure.io).

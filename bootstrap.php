@@ -1,5 +1,5 @@
 <?php
-namespace Avatar4eg\UsersList;
+namespace Flagrow\UsersList;
 
 use Illuminate\Contracts\Events\Dispatcher;
 

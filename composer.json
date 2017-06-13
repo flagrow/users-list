@@ -1,30 +1,39 @@
 {
-  "name": "avatar4eg/flarum-ext-users-list",
+  "name": "flagrow/users-list",
   "description": "Add users list in admin panel.",
   "type": "flarum-extension",
-  "keywords": ["users", "admin"],
+  "keywords": [
+    "users",
+    "admin"
+  ],
   "license": "MIT",
   "authors": [
+    {
+      "name": "Daniël Klabbers",
+      "email": "daniel@klabbers.email",
+      "homepage": "http://luceos.com"
+    },
     {
       "name": "Nikolai Morozov",
       "email": "avanmorozov@gmail.com"
     }
   ],
   "require": {
-    "flarum/core": "^0.1.0-beta.5"
+    "flarum/core": "^0.1.0-beta.6",
+    "jeremeamia/superclosure": "~2.3.0"
   },
   "autoload": {
     "psr-4": {
-      "Avatar4eg\\UsersList\\": "src/"
+      "Flagrow\\UsersList\\": "src/"
     }
   },
   "extra": {
     "flarum-extension": {
-      "title": "Users list",
+      "title": "Flagrow Users List",
       "icon": {
         "name": "users",
-        "backgroundColor": "#FFFFFF",
-        "color": "#000000"
+        "backgroundColor": "#f4f4f4",
+        "color": "#5f4bb6"
       }
     }
   }

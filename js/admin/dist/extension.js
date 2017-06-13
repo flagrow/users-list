@@ -1,14 +1,14 @@
 'use strict';
 
-System.register('avatar4eg/users-list/addUsersListPane', ['flarum/app', 'flarum/extend', 'flarum/components/AdminNav', 'flarum/components/AdminLinkButton', 'avatar4eg/users-list/components/UsersListPage'], function (_export, _context) {
+System.register('flagrow/users-list/addUsersListPane', ['flarum/app', 'flarum/extend', 'flarum/components/AdminNav', 'flarum/components/AdminLinkButton', 'flagrow/users-list/components/UsersListPage'], function (_export, _context) {
     "use strict";
 
-    var app, extend, AdminNav, AdminLinkButton, CountriesPage;
+    var app, extend, AdminNav, AdminLinkButton, UsersListPage;
 
     _export('default', function () {
-        app.routes.usersList = { path: '/users-list', component: CountriesPage.component() };
+        app.routes.usersList = { path: '/users-list', component: UsersListPage.component() };
 
-        app.extensionSettings['avatar4eg-users-list'] = function () {
+        app.extensionSettings['flagrow-users-list'] = function () {
             return m.route(app.route('usersList'));
         };
 
@@ -16,8 +16,8 @@ System.register('avatar4eg/users-list/addUsersListPane', ['flarum/app', 'flarum/
             items.add('users-list', AdminLinkButton.component({
                 href: app.route('usersList'),
                 icon: 'users',
-                children: app.translator.trans('avatar4eg-users-list.admin.nav.users_button'),
-                description: app.translator.trans('avatar4eg-users-list.admin.nav.users_text')
+                children: app.translator.trans('flagrow-users-list.admin.nav.users_button'),
+                description: app.translator.trans('flagrow-users-list.admin.nav.users_text')
             }));
         });
     });
@@ -31,15 +31,15 @@ System.register('avatar4eg/users-list/addUsersListPane', ['flarum/app', 'flarum/
             AdminNav = _flarumComponentsAdminNav.default;
         }, function (_flarumComponentsAdminLinkButton) {
             AdminLinkButton = _flarumComponentsAdminLinkButton.default;
-        }, function (_avatar4egUsersListComponentsUsersListPage) {
-            CountriesPage = _avatar4egUsersListComponentsUsersListPage.default;
+        }, function (_flagrowUsersListComponentsUsersListPage) {
+            UsersListPage = _flagrowUsersListComponentsUsersListPage.default;
         }],
         execute: function () {}
     };
 });;
 'use strict';
 
-System.register('avatar4eg/users-list/components/EmailUserModal', ['flarum/app', 'flarum/components/Modal', 'flarum/components/Button'], function (_export, _context) {
+System.register('flagrow/users-list/components/EmailUserModal', ['flarum/app', 'flarum/components/Modal', 'flarum/components/Button'], function (_export, _context) {
     "use strict";
 
     var app, Modal, Button, EmailUserModal;
@@ -69,7 +69,7 @@ System.register('avatar4eg/users-list/components/EmailUserModal', ['flarum/app',
 
                         this.user = this.props.user;
                         this.forAll = this.props.forAll;
-                        this.subject = m.prop(app.translator.trans('avatar4eg-users-list.admin.modal_mail.default_subject')[0]);
+                        this.subject = m.prop(app.translator.trans('flagrow-users-list.admin.modal_mail.default_subject')[0]);
                         this.messageText = m.prop('');
 
                         if (!this.forAll) {
@@ -87,9 +87,9 @@ System.register('avatar4eg/users-list/components/EmailUserModal', ['flarum/app',
                 }, {
                     key: 'title',
                     value: function title() {
-                        var title = app.translator.trans('avatar4eg-users-list.admin.modal_mail.title_text');
+                        var title = app.translator.trans('flagrow-users-list.admin.modal_mail.title_text');
                         if (this.forAll) {
-                            title += ' ' + app.translator.trans('avatar4eg-users-list.admin.modal_mail.title_all_text');
+                            title += ' ' + app.translator.trans('flagrow-users-list.admin.modal_mail.title_all_text');
                         } else {
                             title += ' ' + this.user.username() + ' (' + this.email() + ')';
                         }
@@ -101,15 +101,15 @@ System.register('avatar4eg/users-list/components/EmailUserModal', ['flarum/app',
                         return [m('div', { className: 'Modal-body' }, [m('form', {
                             className: 'Form',
                             onsubmit: this.onsubmit.bind(this)
-                        }, [this.forAll ? '' : m('div', { className: 'Form-group' }, [m('label', {}, app.translator.trans('avatar4eg-users-list.admin.modal_mail.email_label')), m('input', {
+                        }, [this.forAll ? '' : m('div', { className: 'Form-group' }, [m('label', {}, app.translator.trans('flagrow-users-list.admin.modal_mail.email_label')), m('input', {
                             className: 'FormControl',
                             value: this.email(),
                             oninput: m.withAttr('value', this.oninputEmail.bind(this))
-                        })]), m('div', { className: 'Form-group' }, [m('label', {}, app.translator.trans('avatar4eg-users-list.admin.modal_mail.subject_label')), m('input', {
+                        })]), m('div', { className: 'Form-group' }, [m('label', {}, app.translator.trans('flagrow-users-list.admin.modal_mail.subject_label')), m('input', {
                             className: 'FormControl',
                             value: this.subject(),
                             oninput: m.withAttr('value', this.subject)
-                        })]), m('div', { className: 'Form-group' }, [m('label', {}, app.translator.trans('avatar4eg-users-list.admin.modal_mail.message_label')), m('textarea', {
+                        })]), m('div', { className: 'Form-group' }, [m('label', {}, app.translator.trans('flagrow-users-list.admin.modal_mail.message_label')), m('textarea', {
                             className: 'FormControl',
                             rows: 10,
                             style: "resize: vertical;",
@@ -119,7 +119,7 @@ System.register('avatar4eg/users-list/components/EmailUserModal', ['flarum/app',
                             type: 'submit',
                             className: 'Button Button--primary EditContactModal-save',
                             loading: this.loading,
-                            children: app.translator.trans('avatar4eg-users-list.admin.modal_mail.submit_button'),
+                            children: app.translator.trans('flagrow-users-list.admin.modal_mail.submit_button'),
                             disabled: this.submitDisabled
                         })])])];
                     }
@@ -173,7 +173,7 @@ System.register('avatar4eg/users-list/components/EmailUserModal', ['flarum/app',
                             _this2.hide();
                         }, function (response) {
                             _this2.loading = false;
-                            _this2.handleErrors(response);
+                            _this2.onerror(response);
                         });
                     }
                 }]);
@@ -186,7 +186,7 @@ System.register('avatar4eg/users-list/components/EmailUserModal', ['flarum/app',
 });;
 'use strict';
 
-System.register('avatar4eg/users-list/components/UsersListPage', ['flarum/app', 'flarum/components/Page', 'flarum/components/Button', 'flarum/components/LoadingIndicator', 'flarum/helpers/humanTime', 'flarum/helpers/icon', 'avatar4eg/users-list/components/EmailUserModal'], function (_export, _context) {
+System.register('flagrow/users-list/components/UsersListPage', ['flarum/app', 'flarum/components/Page', 'flarum/components/Button', 'flarum/components/LoadingIndicator', 'flarum/helpers/humanTime', 'flarum/helpers/icon', 'flagrow/users-list/components/EmailUserModal'], function (_export, _context) {
     "use strict";
 
     var app, Page, Button, LoadingIndicator, humanTime, icon, EmailUserModal, UsersListPage;
@@ -196,7 +196,7 @@ System.register('avatar4eg/users-list/components/UsersListPage', ['flarum/app', 
         var url = app.forum.attribute('baseUrl') + '/u/' + user.id();
         var online = user.isOnline();
 
-        return [m('li', { "data-id": user.id() }, [m('div', { className: 'UsersListItem-info' }, [m('span', { className: 'UsersListItem-name' }, [user.username()]), m('span', { className: 'UserCard-lastSeen' + (online ? ' online' : '') }, [online ? [icon('circle'), ' ', app.translator.trans('avatar4eg-users-list.admin.page.online_text')] : [icon('clock-o'), ' ', humanTime(user.lastSeenTime())]]), m('span', { className: 'UsersListItem-comments' }, [icon('comment-o'), user.commentsCount()]), m('span', { className: 'UsersListItem-discussions' }, [icon('reorder'), user.discussionsCount()]), m('a', {
+        return [m('li', { "data-id": user.id() }, [m('div', { className: 'UsersListItem-info' }, [m('span', { className: 'UsersListItem-name' }, [user.username()]), m('span', { className: 'UserCard-lastSeen' + (online ? ' online' : '') }, [online ? [icon('circle'), ' ', app.translator.trans('flagrow-users-list.admin.page.online_text')] : [icon('clock-o'), ' ', humanTime(user.lastSeenTime())]]), m('span', { className: 'UsersListItem-comments' }, [icon('comment-o'), user.commentsCount()]), m('span', { className: 'UsersListItem-discussions' }, [icon('reorder'), user.discussionsCount()]), m('a', {
             className: 'Button Button--link',
             target: '_blank',
             href: url
@@ -223,8 +223,8 @@ System.register('avatar4eg/users-list/components/UsersListPage', ['flarum/app', 
             humanTime = _flarumHelpersHumanTime.default;
         }, function (_flarumHelpersIcon) {
             icon = _flarumHelpersIcon.default;
-        }, function (_avatar4egUsersListComponentsEmailUserModal) {
-            EmailUserModal = _avatar4egUsersListComponentsEmailUserModal.default;
+        }, function (_flagrowUsersListComponentsEmailUserModal) {
+            EmailUserModal = _flagrowUsersListComponentsEmailUserModal.default;
         }],
         execute: function () {
             UsersListPage = function (_Page) {
@@ -254,20 +254,20 @@ System.register('avatar4eg/users-list/components/UsersListPage', ['flarum/app', 
                             loading = LoadingIndicator.component();
                         } else if (this.moreResults) {
                             loading = Button.component({
-                                children: app.translator.trans('avatar4eg-users-list.admin.page.load_more_button'),
+                                children: app.translator.trans('flagrow-users-list.admin.page.load_more_button'),
                                 className: 'Button',
                                 onclick: this.loadMore.bind(this)
                             });
                         }
 
-                        return [m('div', { className: 'UsersListPage' }, [m('div', { className: 'UsersListPage-header' }, [m('div', { className: 'container' }, [m('p', {}, app.translator.trans('avatar4eg-users-list.admin.page.about_text')), Button.component({
+                        return [m('div', { className: 'UsersListPage' }, [m('div', { className: 'UsersListPage-header' }, [m('div', { className: 'container' }, [m('p', {}, app.translator.trans('flagrow-users-list.admin.page.about_text')), Button.component({
                             className: 'Button Button--primary',
                             icon: 'plus',
-                            children: app.translator.trans('avatar4eg-users-list.admin.page.mail_all_button'),
+                            children: app.translator.trans('flagrow-users-list.admin.page.mail_all_button'),
                             onclick: function onclick() {
                                 return app.modal.show(new EmailUserModal({ 'forAll': true }));
                             }
-                        })])]), m('div', { className: 'UsersListPage-list' }, [m('div', { className: 'container' }, [m('div', { className: 'UsersListItems' }, [m('label', {}, app.translator.trans('avatar4eg-users-list.admin.page.list_title')), m('ol', {
+                        })])]), m('div', { className: 'UsersListPage-list' }, [m('div', { className: 'container' }, [m('div', { className: 'UsersListItems' }, [m('label', {}, app.translator.trans('flagrow-users-list.admin.page.list_title')), m('ol', {
                             className: 'UsersList'
                         }, [this.users.map(UserItem)]), m('div', { className: 'UsersListPage-loadMore' }, [loading])])])])])];
                     }
@@ -276,7 +276,7 @@ System.register('avatar4eg/users-list/components/UsersListPage', ['flarum/app', 
                     value: function refresh() {
                         var _this2 = this;
 
-                        var clear = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
+                        var clear = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
                         if (clear) {
                             this.loading = true;
@@ -332,19 +332,19 @@ System.register('avatar4eg/users-list/components/UsersListPage', ['flarum/app', 
 });;
 'use strict';
 
-System.register('avatar4eg/users-list/main', ['flarum/app', 'avatar4eg/users-list/addUsersListPane'], function (_export, _context) {
+System.register('flagrow/users-list/main', ['flarum/app', 'flagrow/users-list/addUsersListPane'], function (_export, _context) {
     "use strict";
 
     var app, addUsersListPane;
     return {
         setters: [function (_flarumApp) {
             app = _flarumApp.default;
-        }, function (_avatar4egUsersListAddUsersListPane) {
-            addUsersListPane = _avatar4egUsersListAddUsersListPane.default;
+        }, function (_flagrowUsersListAddUsersListPane) {
+            addUsersListPane = _flagrowUsersListAddUsersListPane.default;
         }],
         execute: function () {
 
-            app.initializers.add('avatar4eg-users-list', function (app) {
+            app.initializers.add('flagrow-users-list', function (app) {
                 addUsersListPane();
             });
         }
