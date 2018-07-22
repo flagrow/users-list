@@ -1,0 +1,26 @@
+flagrow-users-list:
+  admin:
+    nav:
+      users_button: => flagrow-users-list.ref.users_title
+      users_text: 查看用户列表
+    page:
+      about_text:  查看已注册的用户
+      online_text: => core.forum.user.online_text
+      load_more_button: => core.ref.load_more
+      list_title: => flagrow-users-list.ref.users_title
+      mail_all_button: 发邮件给所有用户
+    modal_mail:
+      title_text: 发信息给
+      title_all_text: 所有用户
+      email_label: 发送给
+      subject_label: 标题
+      default_subject: => flagrow-users-list.ref.default_subject
+      message_label: 信息
+      submit_button: 发送
+
+  email:
+    default_subject: => flagrow-users-list.ref.default_subject
+
+  ref:
+    default_subject: 此消息来自社区管理员
+    users_title: 用户
