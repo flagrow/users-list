@@ -8,7 +8,7 @@ flagrow-users-list:
       online_text: => core.forum.user.online_text
       load_more_button: => core.ref.load_more
       list_title: => flagrow-users-list.ref.users_title
-      mail_all_button: 发邮件给所有用户
+      mail_all_button: 发信息给所有用户
     modal_mail:
       title_text: 发信息给
       title_all_text: 所有用户
