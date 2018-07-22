@@ -23,4 +23,4 @@ flagrow-users-list:
 
   ref:
     default_subject: 此消息来自社区管理员
-    users_title: 用户
+    users_title: 用户列表
