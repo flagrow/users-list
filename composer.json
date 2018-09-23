@@ -19,7 +19,7 @@
     }
   ],
   "require": {
-    "flarum/core": "^0.1.0-beta.6"
+    "flarum/core": "^0.1.0-beta.7"
   },
   "autoload": {
     "psr-4": {
@@ -30,7 +30,7 @@
     "flarum-extension": {
       "title": "Flagrow Users List",
       "icon": {
-        "name": "users",
+        "name": "fas fa-users",
         "backgroundColor": "#f4f4f4",
         "color": "#5f4bb6"
       }

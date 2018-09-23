@@ -1,18 +1,19 @@
 <?php
 namespace Flagrow\UsersList\Api\Controller;
 
-use Flarum\Core\Access\AssertPermissionTrait;
-use Flarum\Core\Repository\UserRepository;
-use Flarum\Http\Controller\ControllerInterface;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Flarum\User\AssertPermissionTrait;
+use Flarum\User\UserRepository;
 use Illuminate\Mail\Mailer;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Arr;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Zend\Diactoros\Response\EmptyResponse;
 
-class SendAdminEmailController implements ControllerInterface
+class SendAdminEmailController implements RequestHandlerInterface
 {
     use AssertPermissionTrait;
 
@@ -53,7 +54,7 @@ class SendAdminEmailController implements ControllerInterface
     /**
      * {@inheritdoc}
      */
-    public function handle(ServerRequestInterface $request)
+    public function handle(ServerRequestInterface $request) : ResponseInterface
     {
         $actor = $request->getAttribute('actor');
 
