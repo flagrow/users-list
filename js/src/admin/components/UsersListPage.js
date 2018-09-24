@@ -5,10 +5,10 @@ import LoadingIndicator from 'flarum/components/LoadingIndicator';
 import humanTime from 'flarum/helpers/humanTime';
 import icon from 'flarum/helpers/icon';
 
-import EmailUserModal from 'flagrow/users-list/components/EmailUserModal';
+import EmailUserModal from './EmailUserModal';
 
 function UserItem(user) {
-    const url = app.forum.attribute('baseUrl') + '/u/' + user.id();
+    const url = `${app.forum.attribute('baseUrl')}/u/${user.id()}`;
     const online = user.isOnline();
 
     return [
@@ -19,27 +19,27 @@ function UserItem(user) {
                 ]),
                 m('span', {className: 'UserCard-lastSeen' + (online ? ' online' : '')}, [
                     online
-                        ? [icon('circle'), ' ', app.translator.trans('flagrow-users-list.admin.page.online_text')]
-                        : [icon('clock-o'), ' ', humanTime(user.lastSeenTime())]
+                        ? [icon('fas fa-circle'), ' ', app.translator.trans('flagrow-users-list.admin.page.online_text')]
+                        : [icon('far fa-clock'), ' ', humanTime(user.lastSeenAt())]
                 ]),
                 m('span', {className: 'UsersListItem-comments'}, [
                     icon('comment-o'),
-                    user.commentsCount()
+                    user.commentCount()
                 ]),
                 m('span', {className: 'UsersListItem-discussions'}, [
                     icon('reorder'),
-                    user.discussionsCount()
+                    user.discussionCount()
                 ]),
                 m('a', {
                     className: 'Button Button--link',
                     target: '_blank',
                     href: url
                 }, [
-                    icon('eye')
+                    icon('fas fa-eye')
                 ]),
                 Button.component({
                     className: 'Button Button--link',
-                    icon: 'envelope',
+                    icon: 'fas fa-envelope',
                     onclick: function (e) {
                         e.preventDefault();
                         app.modal.show(new EmailUserModal({user}));
@@ -73,34 +73,30 @@ export default class UsersListPage extends Page {
             });
         }
 
-        return [
-            m('div', {className: 'UsersListPage'}, [
-                m('div', {className: 'UsersListPage-header'}, [
-                    m('div', {className: 'container'}, [
-                        m('p', {}, app.translator.trans('flagrow-users-list.admin.page.about_text')),
-                        Button.component({
-                            className: 'Button Button--primary',
-                            icon: 'plus',
-                            children: app.translator.trans('flagrow-users-list.admin.page.mail_all_button'),
-                            onclick: () => app.modal.show(new EmailUserModal({'forAll': true}))
-                        })
-                    ])
-                ]),
-                m('div', {className: 'UsersListPage-list'}, [
-                    m('div', {className: 'container'}, [
-                        m('div', {className: 'UsersListItems'}, [
-                            m('label', {}, app.translator.trans('flagrow-users-list.admin.page.list_title')),
-                            m('ol', {
-                                    className: 'UsersList'
-                                },
-                                [this.users.map(UserItem)]
-                            ),
-                            m('div', {className: 'UsersListPage-loadMore'}, [loading])
-                        ])
-                    ])
-                ])
-            ])
-        ];
+        return <div className="UsersListPage">
+            <div className="UsersListPage-header">
+                <div className="container">
+                    <p>{app.translator.trans('flagrow-users-list.admin.page.about_text')}</p>
+                    {Button.component({
+                        className: 'Button Button--primary',
+                        icon: 'plus',
+                        children: app.translator.trans('flagrow-users-list.admin.page.mail_all_button'),
+                        onclick: () => app.modal.show(new EmailUserModal({ forAll: true }))
+                    })}
+                </div>
+            </div>
+            <div className="UsersListPage-list">
+                <div className="container">
+                    <div className="UsersListItems">
+                        <label>{app.translator.trans('flagrow-users-list.admin.page.list_title')}</label>
+                        <ol className="UsersList">{this.users.map(UserItem)}</ol>
+                        <div className="UsersListPage-loadMore">
+                            {loading}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 
     refresh(clear = true) {

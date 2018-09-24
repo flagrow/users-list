@@ -40,50 +40,32 @@ export default class EmailUserModal extends Modal {
     }
 
     content() {
-        return [
-            m('div', {className: 'Modal-body'}, [
-                m('form', {
-                        className: 'Form',
-                        onsubmit: this.onsubmit.bind(this)
-                    },
-                    [
-                        this.forAll ? '' : m('div', {className: 'Form-group'}, [
-                            m('label', {}, app.translator.trans('flagrow-users-list.admin.modal_mail.email_label')),
-                            m('input', {
-                                className: 'FormControl',
-                                value: this.email(),
-                                oninput: m.withAttr('value', this.oninputEmail.bind(this))
-                            })
-                        ]),
-                        m('div', {className: 'Form-group'}, [
-                            m('label', {}, app.translator.trans('flagrow-users-list.admin.modal_mail.subject_label')),
-                            m('input', {
-                                className: 'FormControl',
-                                value: this.subject(),
-                                oninput: m.withAttr('value', this.subject)
-                            })
-                        ]),
-                        m('div', {className: 'Form-group'}, [
-                            m('label', {}, app.translator.trans('flagrow-users-list.admin.modal_mail.message_label')),
-                            m('textarea', {
-                                className: 'FormControl',
-                                rows: 10,
-                                style: "resize: vertical;",
-                                value: this.messageText(),
-                                oninput: m.withAttr('value', this.messageText)
-                            })
-                        ]),
-                        Button.component({
-                            type: 'submit',
-                            className: 'Button Button--primary EditContactModal-save',
-                            loading: this.loading,
-                            children: app.translator.trans('flagrow-users-list.admin.modal_mail.submit_button'),
-                            disabled: this.submitDisabled
-                        })
-                    ]
-                )
-            ])
-        ];
+        return <div className="Modal-body">
+            <form className="Form" onsubmit={this.onsubmit.bind(this)}>
+                {!this.forAll && <div className="Form-group">
+                    <label>{app.translator.trans('flagrow-users-list.admin.modal_mail.email_label')}</label>
+                    <input type="text" className="FormControl" value={this.email()} oninput={this.oninputEmail.bind(this)}/>
+                </div>}
+
+                <div className="Form-group">
+                    <label>{app.translator.trans('flagrow-users-list.admin.modal_mail.subject_label')}</label>
+                    <input type="text" className="FormControl" bidi={this.subject} />
+                </div>
+
+                <div className="Form-group">
+                    <label>{app.translator.trans('flagrow-users-list.admin.modal_mail.message_label')}</label>
+                    <textarea rows="10" className="FormControl" style="resize: vertical; width: 100%;" bidi={this.messageText}></textarea>
+                </div>
+
+                {Button.component({
+                    type: 'submit',
+                    className: 'Button Button--primary EditContactModal-save',
+                    loading: this.loading,
+                    children: app.translator.trans('flagrow-users-list.admin.modal_mail.submit_button'),
+                    disabled: this.submitDisabled
+                })}
+            </form>
+        </div>
     }
 
     oninputEmail(value) {
@@ -119,7 +101,7 @@ export default class EmailUserModal extends Modal {
             emails: this.forAll ? [] : this.splitEmails(this.email()),
             subject: this.subject(),
             text: this.messageText(),
-            forAll: this.forAll
+            forAll: !!this.forAll
         };
 
         app.request({
